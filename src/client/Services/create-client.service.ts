@@ -10,10 +10,9 @@ export class CreateClientService{
     ){}
 
 
-    async execute(client: IClientEntity): Promise<string>{//poderia trocar esse retorno para uma httpResponse no caso ou sla
+    async execute(client: IClientEntity): Promise<IClientEntity>{//poderia trocar esse retorno para uma httpResponse no caso ou sla
         const newClient = await this.createClientRepository.execute(client)
-        
-        return newClient.name
+        return newClient
 
     }
 

@@ -7,7 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     ClientModule, 
-    MongooseModule.forRoot('mongodb+srv://DevWCastle:<db_password>@client-manager.1qrmbgp.mongodb.net/?retryWrites=true&w=majority&appName=client-manager')
+    MongooseModule.forRoot('mongodb+srv://DevWCastle:bCFtGWv6lB6gomKD@client-manager.1qrmbgp.mongodb.net/?retryWrites=true&w=majority&appName=client-manager')
   ],
   controllers: [AppController],
   providers: [AppService],

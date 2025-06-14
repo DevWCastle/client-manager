@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Client, ClientSchema } from './Schema/client.schema';
 import { GetClientRepository } from './Repositories/get-client.repositoty';
 import { GetClientService } from './Services/get-client.service';
+import { DeleteClientRepository } from './Repositories/delete-client.repository';
+import { DeleteClientService } from './Services/delete-client.service';
 
 @Module({
   imports:[
@@ -16,7 +18,15 @@ import { GetClientService } from './Services/get-client.service';
   ],
 
   controllers: [ClientController],
-  providers: [CreateClientRepository, CreateClientService, GetClientRepository, GetClientService],
-  exports: [CreateClientRepository, CreateClientService, GetClientRepository, GetClientService]
+  providers: [
+    CreateClientRepository, CreateClientService, 
+    GetClientRepository, GetClientService, 
+    DeleteClientRepository, DeleteClientService
+  ],
+  exports: [
+    CreateClientRepository, CreateClientService,
+    GetClientRepository, GetClientService,
+    DeleteClientRepository, DeleteClientService
+  ]
 })
 export class ClientModule {}

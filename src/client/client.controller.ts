@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateClientService } from './Services/create-client.service';
 import { IClientEntity } from './Interfaces/IClientEntity';
 import { GetClientService } from './Services/get-client.service';
 import { DeleteClientService } from './Services/delete-client.service';
 import { response } from 'express';
 import { DeleteResult } from 'mongoose';
+import { UpdateClientService } from './Services/update-client.service';
+import { ClientDocument } from './Schema/client.schema';
 
 @Controller('client')
 export class ClientController {
@@ -12,7 +14,8 @@ export class ClientController {
     constructor(
         private readonly createClientService: CreateClientService,
         private readonly getClientService: GetClientService,
-        private readonly deleteClientService: DeleteClientService
+        private readonly deleteClientService: DeleteClientService,
+        private readonly updateClientService: UpdateClientService
     ){}
 
     @Post("create")// http://api.com/client/create no metodo post 
@@ -37,6 +40,14 @@ export class ClientController {
         const deleteCount = await this.deleteClientService.execute(idClient);
         return deleteCount;
     }
+
+    @Patch('update/:id')
+    async update(@Param('id') idClient: string, @Body() clientData: IClientEntity): Promise<ClientDocument | null>{
+
+        const updateClient = await this.updateClientService.execute(idClient, clientData);
+        return updateClient;
+    }
+
 
 
 

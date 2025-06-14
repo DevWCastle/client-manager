@@ -1,6 +1,6 @@
 
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
+import { HydratedDocument, Document} from "mongoose";
 
 
 export type ClientDocument = HydratedDocument<Client> //esta criando um tipo, que é uma referencia a esta classe Client.

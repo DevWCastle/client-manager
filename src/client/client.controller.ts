@@ -1,12 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateClientService } from './Services/create-client.service';
 import { IClientEntity } from './Interfaces/IClientEntity';
+import { GetClientService } from './Services/get-client.service';
 
 @Controller('client')
 export class ClientController {
 
     constructor(
-        private readonly createClientService: CreateClientService
+        private readonly createClientService: CreateClientService,
+        private readonly getClientService: GetClientService
     ){}
 
     @Post("create")// http://api.com/client/create no metodo post 
@@ -17,6 +19,14 @@ export class ClientController {
     return newClient
 
     }
+
+    @Get("clients")
+    async getClients(): Promise<IClientEntity[]>{
+        const clients =  await this.getClientService.execute()
+
+        return clients;
+    }
+
 
 
 }

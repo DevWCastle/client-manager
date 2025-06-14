@@ -20,7 +20,7 @@ export class Client extends Document{//cria o Schema extendendo do Documents que
     @Prop({ required: true})
     password: string
 
-    @Prop({ required: true})
+    @Prop({ required: true, default: Date.now})
     createdData: Date
 
 }
